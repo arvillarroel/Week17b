@@ -1,4 +1,4 @@
-name: deploy-model-training-pipeline
+name: deploy-model-training-pipeline-new
 
 on: 
   workflow_dispatch:
