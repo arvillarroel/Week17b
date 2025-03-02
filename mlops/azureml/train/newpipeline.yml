@@ -6,14 +6,16 @@ description: Pipeline for data preparation, training, prediction, and model regi
 
 inputs:
   raw_data:
-    type: uri_file
+    type: uri_folder
     path: azureml:used-cars-data@latest
 
 outputs:
   train_data:
+    type: uri_folder
   test_data:
+    type: uri_folder
   model_info_output_path:
-
+    
 settings:
   default_datastore: azureml:workspaceblobstore
   default_compute: azureml:cpu-cluster
@@ -29,7 +31,7 @@ jobs:
       --raw_data ${{inputs.raw_data}} 
       --train_data ${{outputs.train_data}}
       --test_data ${{outputs.test_data}} 
-    environment: azureml:used-cars-train-env@latest
+    environment: azureml:machine_learning_E2E@latest
     inputs:
       raw_data: ${{parent.inputs.raw_data}}
     outputs:
@@ -54,7 +56,7 @@ jobs:
         values: [10, 20, 30, 50]
       max_depth:
         type: choice  # Specify the type for max_depth
-        values: [1,3,5,10]  # Provide the values for max_depth
+        values: [3, 5, 10, None]  # Provide the values for max_depth
     objective:
       goal: minimize
       primary_metric: MSE
