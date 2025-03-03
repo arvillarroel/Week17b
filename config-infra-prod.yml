@@ -18,5 +18,5 @@ variables:
   ado_service_connection_aml_ws: Azure-ARM-Prod
 
   # For pipeline reference
-  resource_group: New_Resource
-  aml_workspace: azuremlforfin
+  resource_group: Test_RG
+  aml_workspace: azureml
